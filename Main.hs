@@ -8,6 +8,7 @@ import           Control.Monad
 import           Data.ByteString (ByteString)
 import qualified Data.ByteString as BS
 import           Data.List (elemIndex)
+import           Data.Monoid
 import           Options.Applicative as Opt
 import           System.IO
 import           System.Process
