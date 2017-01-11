@@ -1,5 +1,5 @@
 name:                runmany
-version:             0.1.0.0
+version:             0.1.1
 synopsis:            Run multiple commands, interleaving output and errors
 description:         Run multiple commands, interleaving output and errors
 homepage:            https://github.com/jwiegley/runmany
@@ -17,7 +17,7 @@ executable runmany
   main-is:             Main.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base >=4.9 && <4.10
-    , optparse-applicative >=0.12 && <0.13
+    , optparse-applicative >=0.12 && <0.14
     , stm
     , async
     , bytestring
