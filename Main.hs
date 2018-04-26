@@ -10,6 +10,7 @@ import qualified Data.ByteString as BS
 import           Data.List (elemIndex)
 import           Data.Monoid
 import           Options.Applicative as Opt
+import           System.Exit
 import           System.IO
 import           System.Process
 
@@ -83,6 +84,7 @@ runCommands opts = do
                     , detach_console     = False
                     , create_new_console = False
                     , new_session        = False
+                    -- , use_process_jobs   = False
                     , child_group        = Nothing
                     , child_user         = Nothing
                     }
@@ -94,10 +96,17 @@ runCommands opts = do
             t2 <- async $ readOutput verb msgs MsgError label herr
             link t2
 
-            return h
+            return (h, cmd)
 
         when verb $ putStrLn "Waiting for processes to finish..."
-        forM_ hs waitForProcess
+        forM_ hs $ \(h, cmd) -> do
+            exitCode <- waitForProcess h
+            case exitCode of
+                ExitFailure n ->
+                    errorWithoutStackTrace
+                        $ "runmany: command failed with exit code "
+                            ++ show n ++ ": " ++ cmd
+                _ -> return ()
 
         when verb $ putStrLn "Waiting for logging queue to flush..."
         atomically $ do
