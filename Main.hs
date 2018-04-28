@@ -91,8 +91,10 @@ runCommands opts = do
             when verb $ putStrLn $ "Executing: " ++ cmd
             (_, Just hout, Just herr, h) <- createProcess p
 
+            hSetBuffering hout LineBuffering
             t1 <- async $ readOutput verb msgs MsgOutput label hout
             link t1
+            hSetBuffering herr LineBuffering
             t2 <- async $ readOutput verb msgs MsgError label herr
             link t2
 
