@@ -1,8 +1,8 @@
--- This file has been generated from package.yaml by hpack version 0.27.0.
+-- This file has been generated from package.yaml by hpack version 0.28.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0a033503eff6d23beeb6096680a18b90f43b82d49adca1b73ada640cdb992d04
+-- hash: 6bda35ca08dfca89c17b0690cec7725824e4fd547bbaba1968e6b6172be876fe
 
 name:                runmany
 version:             0.1.3
