@@ -8,8 +8,6 @@ git:
 env:
   global:
   matrix:
-    - GHCVERSION=ghc822
-    - GHCVERSION=ghc844
     - GHCVERSION=ghc863
 
 matrix:
